@@ -30,7 +30,7 @@ body {
 @media all and (max-width: 600px)
 {
   body {
-     height: calc(90%) !important;
+     height: calc(95%) !important;
   }
 }
 

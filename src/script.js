@@ -92,7 +92,7 @@ async function subscribe() {
         xmessage = JSON.parse(xmessage);
         // console.log('processing', xmessage);
         let data = JSON.parse(xmessage.message);
-        appendMessage(data.user == PERSON_NAME ? window.person : data.user, PERSON_IMG + PERSON_NAME, data.user == PERSON_NAME ? "right" : "left", data.message, xmessage.time);
+        appendMessage(data.user == PERSON_NAME ? window.person : data.user, PERSON_IMG + (data.user == PERSON_NAME ? PERSON_NAME : data.user), data.user == PERSON_NAME ? "right" : "left", data.message, xmessage.time);
       } catch(e) {
         console.log(e)
       }

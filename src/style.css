@@ -30,10 +30,10 @@ body {
 @media all and (max-width: 600px)
 {
   body {
-    max-height: 90vh;
+    max-height: 80vh;
   }
   .msger {
-     height: calc(90%);
+     height: calc(80%);
   }
 }
 

@@ -1,4 +1,4 @@
-# NTFY Chat UI
+# 💬 NTFY Chat UI
 
 Simple chat with NTFY backend
 

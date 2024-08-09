@@ -29,7 +29,7 @@ body {
 
 @media all and (max-width: 600px)
 {
-  .msger {
+  body {
      height: calc(90%) !important;
   }
 }

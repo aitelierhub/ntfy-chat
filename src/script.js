@@ -15,8 +15,7 @@ const PERSON_NAME = window.person;
 const ROOM = urlParams.get('room') || "ntfydemochatroom";
 const SERVICE = "https://ntfy.sh/" + ROOM;
 // Change Room Title
-const TITLE = urlParams.get('title') || "NTFY Chat";
-document.getElementById("title").innerHTML = TITLE;
+document.getElementById("title").innerHTML =  urlParams.get('title') || "NTFY Chat";
 
 msgerForm.addEventListener("submit", event => {
   event.preventDefault();

@@ -10,7 +10,7 @@ if (!window.person){
 }
 
 // Random Icons based on Username
-const PERSON_IMG = "https://api.dicebear.com/9.x/pixel-art/svg?seed="+window.person;
+const PERSON_IMG = "https://api.dicebear.com/9.x/pixel-art/svg?seed=";
 const PERSON_NAME = window.person;
 const ROOM = urlParams.get('room') || "ntfydemochatroom";
 const SERVICE = "https://ntfy.sh/" + ROOM;
@@ -34,7 +34,7 @@ const eventSource = new EventSource(SERVICE+'/sse');
 eventSource.onmessage = (e) => {
   let data = JSON.parse(JSON.parse(e.data).message);
   //console.log(e.data);
-  appendMessage(data.user == PERSON_NAME ? window.person : data.user, PERSON_IMG, data.user == PERSON_NAME ? "right" : "left", data.message, Date.now());
+  appendMessage(data.user == PERSON_NAME ? window.person : data.user,  + PERSON_NAME, data.user == PERSON_NAME ? "right" : "left", data.message, Date.now());
 };
 
 function appendMessage(name, img, side, text, time) {
@@ -92,7 +92,7 @@ async function subscribe() {
         xmessage = JSON.parse(xmessage);
         // console.log('processing', xmessage);
         let data = JSON.parse(xmessage.message);
-        appendMessage(data.user == PERSON_NAME ? window.person : data.user, PERSON_IMG, data.user == PERSON_NAME ? "right" : "left", data.message, xmessage.time);
+        appendMessage(data.user == PERSON_NAME ? window.person : data.user, PERSON_IMG + PERSON_NAME, data.user == PERSON_NAME ? "right" : "left", data.message, xmessage.time);
       } catch(e) {
         console.log(e)
       }

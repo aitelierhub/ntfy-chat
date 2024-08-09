@@ -1,7 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 2024 qxip (https://codepen.io/qxip/pen/rNEzvwX)
-Fork of an original work NTFY Chat UI (https://codepen.io/qxip/pen/rNEzvwX)
+Copyright (c) 2024 Aitelier Hub SRL
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

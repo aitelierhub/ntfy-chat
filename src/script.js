@@ -1,13 +1,15 @@
+const urlParams = new URLSearchParams(window.location.search);
 const msgerForm = get(".msger-inputarea");
 const msgerInput = get(".msger-input");
 const msgerChat = get(".msger-chat"); 
 
 window.person = localStorage.getItem("username");
 if (!window.person){
-   window.person = prompt("Please enter your name", "");
+   window.person = urlParams.get('username') || prompt("Please enter your name", "");
    localStorage.setItem("username", window.person);
 }
-// Icons made by Freepik from www.flaticon.com
+
+// Random Icons based on Username
 const PERSON_IMG = "https://api.dicebear.com/9.x/pixel-art/svg?seed="+window.person;
 const PERSON_NAME = window.person;
 const SERVICE = "https://ntfy.sh/ntfydemochatroom"

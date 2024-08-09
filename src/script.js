@@ -34,7 +34,7 @@ const eventSource = new EventSource(SERVICE+'/sse');
 eventSource.onmessage = (e) => {
   let data = JSON.parse(JSON.parse(e.data).message);
   //console.log(e.data);
-  appendMessage(data.user == PERSON_NAME ? window.person : data.user,  + PERSON_NAME, data.user == PERSON_NAME ? "right" : "left", data.message, Date.now());
+  appendMessage(data.user == PERSON_NAME ? window.person : data.user, PERSON_IMG + PERSON_NAME, data.user == PERSON_NAME ? "right" : "left", data.message, Date.now());
 };
 
 function appendMessage(name, img, side, text, time) {

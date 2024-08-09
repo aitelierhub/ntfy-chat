@@ -27,6 +27,18 @@ body {
   font-family: Helvetica, sans-serif;
 }
 
+@media all and (max-width: 600px)
+{
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background-image: var(--body-bg);
+    font-family: Helvetica, sans-serif;
+  }
+}
+
 .msger {
   display: flex;
   flex-flow: column wrap;

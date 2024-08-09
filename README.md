@@ -8,5 +8,5 @@ Simple chat with NTFY backend
 ### URL Params
 - `username`
   * Example `?username=jack`
-- 'room'
+- `room`
   * Example `?room=myuniqueroomid`

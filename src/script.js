@@ -14,6 +14,9 @@ const PERSON_IMG = "https://api.dicebear.com/9.x/pixel-art/svg?seed="+window.per
 const PERSON_NAME = window.person;
 const ROOM = urlParams.get('room') || "ntfydemochatroom";
 const SERVICE = "https://ntfy.sh/" + ROOM;
+// Change Room Title
+const TITLE = urlParams.get('title') || "NTFY Chat";
+document.getElementById("title").innerHTML = TITLE;
 
 msgerForm.addEventListener("submit", event => {
   event.preventDefault();

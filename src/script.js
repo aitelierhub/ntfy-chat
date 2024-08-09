@@ -45,7 +45,7 @@ function appendMessage(name, img, side, text, time) {
       <div class="msg-bubble">
         <div class="msg-info">
           <div class="msg-info-name">${name}</div>
-          <div class="msg-info-time">${formatDate(new Date(time))}</div>
+          <div class="msg-info-time">${formatDate(new Date(time * 1000))}</div>
         </div>
         <div class="msg-text">${text}</div>
       </div>

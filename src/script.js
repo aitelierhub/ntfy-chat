@@ -73,7 +73,7 @@ function random(min, max) {
 }
 
 async function subscribe() {
-  let response = await fetch(SERVICE+"/json?since=1m&poll=1");
+  let response = await fetch(SERVICE+"/json?since=10m&poll=1");
   if (response.status == 502) {
     await subscribe();
   } else if (response.status != 200) {

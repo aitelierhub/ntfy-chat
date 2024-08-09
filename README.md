@@ -1,0 +1,2 @@
+# ntfy-chat
+NTFY Chat

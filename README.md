@@ -2,7 +2,7 @@
 
 Simple chat with NTFY backend
 
-- [DEMO](https://codepen.io/qxip/pen/rNEzvwX)
+- [DEMO](https://codepen.io/qxip/full/rNEzvwX)
 
 
 ### URL Params

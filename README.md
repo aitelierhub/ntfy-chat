@@ -9,4 +9,6 @@ Simple chat with NTFY backend
 - `username`
   * Example `?username=jack`
 - `room`
-  * Example `?room=myuniqueroomid`
+  * Example `?room=myuniqueroomid100`
+- `title`
+  * Example `?title=Room100`

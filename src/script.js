@@ -1,18 +1,11 @@
-import FingerprintjsFingerprintjs from "https://esm.sh/@fingerprintjs/fingerprintjs";
 const msgerForm = get(".msger-inputarea");
 const msgerInput = get(".msger-input");
 const msgerChat = get(".msger-chat"); 
 
-function fetchFingerprint(){
-      new Fingerprint2({excludeAdBlock: true }).get((result, components) => {
-        window.fingerprint = result;
-        
-      }) 
-}
-fetchFingerprint()
-
+window.person = localStorage.getItem("username");
 if (!window.person){
    window.person = prompt("Please enter your name", "");
+   localStorage.setItem("username", window.person);
 }
 // Icons made by Freepik from www.flaticon.com
 const PERSON_IMG = "https://api.dicebear.com/9.x/pixel-art/svg?seed="+window.person;
@@ -30,14 +23,12 @@ msgerForm.addEventListener("submit", event => {
     body: JSON.stringify({ message: msgText, user: PERSON_NAME })
   })
   msgerInput.value = "";
-
-  //botResponse();
 });
 
 const eventSource = new EventSource(SERVICE+'/sse');
 eventSource.onmessage = (e) => {
   let data = JSON.parse(JSON.parse(e.data).message);
-  console.log(e.data);
+  //console.log(e.data);
   appendMessage(data.user == PERSON_NAME ? window.person : data.user, PERSON_IMG, data.user == PERSON_NAME ? "right" : "left", data.message, Date.now());
 };
 
@@ -46,13 +37,11 @@ function appendMessage(name, img, side, text, time) {
   const msgHTML = `
     <div class="msg ${side}-msg">
       <div class="msg-img" style="background-image: url(${img})"></div>
-
       <div class="msg-bubble">
         <div class="msg-info">
           <div class="msg-info-name">${name}</div>
           <div class="msg-info-time">${formatDate(new Date(time))}</div>
         </div>
-
         <div class="msg-text">${text}</div>
       </div>
     </div>
@@ -96,7 +85,7 @@ async function subscribe() {
     messages.forEach((xmessage) => {
       try {
         xmessage = JSON.parse(xmessage);
-        console.log('processing', xmessage);
+        // console.log('processing', xmessage);
         let data = JSON.parse(xmessage.message);
         appendMessage(data.user == PERSON_NAME ? window.person : data.user, PERSON_IMG, data.user == PERSON_NAME ? "right" : "left", data.message, xmessage.time);
       } catch(e) {
@@ -110,5 +99,3 @@ async function subscribe() {
 }
 
 subscribe();
-
-

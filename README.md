@@ -24,7 +24,7 @@ You can embed the chat widget on any page using the following example:
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/gh/aitelierhub/ntfy-chat@main/minichat.js"
-          data-username="you"
+          data-username="jack"
           data-room="myuniqueroomid100"
           data-title="Room 100" defer>
   </script>

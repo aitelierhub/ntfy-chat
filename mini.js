@@ -81,7 +81,7 @@
         // Create chat bubble
         const chatBubble = document.createElement('div');
         chatBubble.classList.add('chat-bubble');
-        chatBubble.innerHTML = `<img src="https://img.icons8.com/ios-filled/50/ffffff/speech-bubble.png" alt="Chat">`;
+        chatBubble.innerHTML = `<img src="https://cdn.icon-icons.com/icons2/806/PNG/512/chat-44_icon-icons.com_65944.png" alt="Chat">`;
         document.body.appendChild(chatBubble);
 
         // Create chat overlay (initially hidden)

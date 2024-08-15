@@ -1,19 +1,16 @@
 !(function () {
-    // Chat configuration default parameters
     const chatParams = {
-        username: "guest",   // default username
-        room: "default-room", // default room
-        title: "Chat Room"   // default title
+        username: "guest",
+        room: "default-room",
+        title: "Chat Room"
     };
 
-    // Main wrapper logic for the chat-room component
     const ATTRIBUTE_KEYS = {
         USERNAME: "username",
         ROOM: "room",
         TITLE: "title",
         HEIGHT: "height",
-        WIDTH: "width",
-        COLOR_MODE: "color-mode",
+        WIDTH: "width"
     };
 
     const OBSERVED_ATTRIBUTES = Object.values(ATTRIBUTE_KEYS);
@@ -27,7 +24,9 @@
             super();
             this.iframe = document.createElement("iframe");
             this.iframe.style.border = "none";
-            this.iframe.style.display = "none"; // Ensure iframe is hidden until chat bubble is clicked
+            this.iframe.style.display = "block";
+            this.iframe.style.width = "100%";
+            this.iframe.style.height = "100%";
         }
 
         get username() {
@@ -55,11 +54,6 @@
 
         updateIframeAttributes() {
             this.iframe.src = this.chatUrl;
-
-            const height = this.getAttribute(ATTRIBUTE_KEYS.HEIGHT) || "500px";
-            const width = this.getAttribute(ATTRIBUTE_KEYS.WIDTH) || "100%";
-            this.iframe.style.height = height;
-            this.iframe.style.width = width;
         }
 
         connectedCallback() {
@@ -76,18 +70,15 @@
 
     window.customElements.define("chat-room", ChatRoom);
 
-    // Function to dynamically create the chat bubble and overlay
     function createChatElements() {
-        // Create chat bubble
         const chatBubble = document.createElement('div');
         chatBubble.classList.add('chat-bubble');
         chatBubble.innerHTML = `<img src="https://img.icons8.com/ios-filled/50/ffffff/speech-bubble.png" alt="Chat">`;
         document.body.appendChild(chatBubble);
 
-        // Create chat overlay (initially hidden)
         const chatOverlay = document.createElement('div');
         chatOverlay.classList.add('chat-overlay');
-        chatOverlay.style.display = "none"; // Ensure the overlay is hidden initially
+        chatOverlay.style.display = "none";
         chatOverlay.innerHTML = `
             <div class="chat-container">
                 <button class="close-chat">×</button>
@@ -95,19 +86,13 @@
             </div>`;
         document.body.appendChild(chatOverlay);
 
-        // Ensure we find the iframe after it's created
         const iframe = chatOverlay.querySelector('iframe');
         if (iframe) {
-            iframe.style.display = 'none'; // Hide iframe initially
+            iframe.style.display = 'block';
         }
 
-        // Add event listeners for chat bubble and close button
         chatBubble.addEventListener('click', () => {
             chatOverlay.style.display = 'flex';
-            const iframe = chatOverlay.querySelector('iframe');
-            if (iframe) {
-                iframe.style.display = 'block'; // Show iframe once chat opens
-            }
         });
 
         const closeButton = chatOverlay.querySelector('.close-chat');
@@ -116,10 +101,8 @@
         });
     }
 
-    // Inject styles for chat bubble and overlay
     function injectStyles() {
         const styles = `
-            /* Chat Bubble */
             .chat-bubble {
                 position: fixed;
                 bottom: 20px;
@@ -139,29 +122,30 @@
                 width: 30px;
                 height: 30px;
             }
-            /* Chat Overlay */
             .chat-overlay {
                 position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
+                bottom: 0;
+                right: 0;
+                width: 350px;
+                height: 500px;
                 background-color: rgba(0, 0, 0, 0.6);
                 display: none;
                 align-items: center;
                 justify-content: center;
                 z-index: 999;
+                padding: 10px;
+                box-sizing: border-box;
+                border-radius: 10px;
+                overflow: hidden;
             }
             .chat-container {
                 position: relative;
-                width: 90%;
-                height: 80%;
-                max-width: 500px;
+                width: 100%;
+                height: 100%;
                 background-color: #fff;
                 border-radius: 10px;
                 overflow: hidden;
             }
-            /* Close Button */
             .close-chat {
                 position: absolute;
                 top: 10px;
@@ -179,14 +163,11 @@
         document.head.appendChild(styleSheet);
     }
 
-    // Wait for DOMContentLoaded to inject the chat elements
     window.addEventListener('DOMContentLoaded', () => {
-        // Inject chat bubble, overlay, and custom element
         createChatElements();
         injectStyles();
     });
 
-    // Allow dynamic configuration via parameters passed to the script (optional)
     const scriptTag = document.currentScript;
     if (scriptTag) {
         chatParams.username = scriptTag.getAttribute('data-username') || chatParams.username;

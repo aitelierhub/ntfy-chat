@@ -81,23 +81,14 @@
         chatOverlay.style.display = "none";
         chatOverlay.innerHTML = `
             <div class="chat-container">
-                <button class="close-chat">×</button>
                 <chat-room username="${chatParams.username}" room="${chatParams.room}" title="${chatParams.title}"></chat-room>
             </div>`;
         document.body.appendChild(chatOverlay);
 
-        const iframe = chatOverlay.querySelector('iframe');
-        if (iframe) {
-            iframe.style.display = 'block';
-        }
-
         chatBubble.addEventListener('click', () => {
-            chatOverlay.style.display = 'flex';
-        });
-
-        const closeButton = chatOverlay.querySelector('.close-chat');
-        closeButton.addEventListener('click', () => {
-            chatOverlay.style.display = 'none';
+            const isChatOpen = chatOverlay.style.display === 'flex';
+            chatOverlay.style.display = isChatOpen ? 'none' : 'flex';
+            chatBubble.classList.toggle('open', !isChatOpen);
         });
     }
 
@@ -109,14 +100,18 @@
                 right: 20px;
                 width: 60px;
                 height: 60px;
-                background-color: #ff5722;
+                background-color: transparent;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
-                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
                 z-index: 1000;
+                transition: background-color 0.3s;
+                box-shadow: none;
+            }
+            .chat-bubble.open {
+                background-color: transparent;
             }
             .chat-bubble img {
                 width: 30px;
@@ -128,7 +123,6 @@
                 right: 0;
                 width: 350px;
                 height: 500px;
-                background-color: rgba(0, 0, 0, 0.6);
                 display: none;
                 align-items: center;
                 justify-content: center;
@@ -137,24 +131,16 @@
                 box-sizing: border-box;
                 border-radius: 10px;
                 overflow: hidden;
+                background: transparent;
             }
             .chat-container {
                 position: relative;
                 width: 100%;
                 height: 100%;
-                background-color: #fff;
+                background-color: rgba(255, 255, 255, 0.95); /* Light transparency for floating effect */
                 border-radius: 10px;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
                 overflow: hidden;
-            }
-            .close-chat {
-                position: absolute;
-                top: 10px;
-                right: 10px;
-                background-color: transparent;
-                border: none;
-                font-size: 20px;
-                cursor: pointer;
-                color: #ff5722;
             }
         `;
         const styleSheet = document.createElement('style');

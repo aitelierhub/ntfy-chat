@@ -11,7 +11,7 @@ if (!window.person){
 
 // Random Icons based on Username
 const PERSON_IMG = "https://api.dicebear.com/9.x/pixel-art/svg?seed=";
-const PERSON_NAME = window.person;
+const PERSON_NAME = urlParams.get('username') || window.person;
 const ROOM = urlParams.get('room') || "ntfydemochatroom";
 const SERVICE = "https://ntfy.sh/" + ROOM;
 // Change Room Title

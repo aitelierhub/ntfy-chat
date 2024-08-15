@@ -19,7 +19,7 @@ The following URL parameters are available to configure the widget:
 ### Embedding
 You can embed the chat widget on any page using the following example:
 
-```
+```html
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">

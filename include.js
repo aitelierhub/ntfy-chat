@@ -1,12 +1,12 @@
 !(function () {
-    // Keep existing parameters for the chat configuration
+    // Chat configuration default parameters
     const chatParams = {
         username: "guest",   // default username
         room: "default-room", // default room
         title: "Chat Room"   // default title
     };
 
-    // Main Wrapper logic from your existing embed.js code
+    // Main wrapper logic for the chat-room component
     const ATTRIBUTE_KEYS = {
         USERNAME: "username",
         ROOM: "room",
@@ -27,6 +27,7 @@
             super();
             this.iframe = document.createElement("iframe");
             this.iframe.style.border = "none";
+            this.iframe.style.display = "none"; // Ensure iframe is hidden until chat bubble is clicked
         }
 
         get username() {
@@ -83,9 +84,10 @@
         chatBubble.innerHTML = `<img src="https://img.icons8.com/ios-filled/50/ffffff/speech-bubble.png" alt="Chat">`;
         document.body.appendChild(chatBubble);
 
-        // Create chat overlay
+        // Create chat overlay (initially hidden)
         const chatOverlay = document.createElement('div');
         chatOverlay.classList.add('chat-overlay');
+        chatOverlay.style.display = "none"; // Ensure the overlay is hidden initially
         chatOverlay.innerHTML = `
             <div class="chat-container">
                 <button class="close-chat">×</button>
@@ -96,6 +98,8 @@
         // Add event listeners for chat bubble and close button
         chatBubble.addEventListener('click', () => {
             chatOverlay.style.display = 'flex';
+            const iframe = chatOverlay.querySelector('iframe');
+            iframe.style.display = 'block'; // Show the iframe once the chat opens
         });
 
         const closeButton = chatOverlay.querySelector('.close-chat');

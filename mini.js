@@ -81,7 +81,7 @@
         // Create chat bubble
         const chatBubble = document.createElement('div');
         chatBubble.classList.add('chat-bubble');
-        chatBubble.innerHTML = `<img src="https://cdn.icon-icons.com/icons2/806/PNG/512/chat-44_icon-icons.com_65944.png" alt="Chat">`;
+        chatBubble.innerHTML = `<img src="https://img.icons8.com/ios-filled/50/ffffff/speech-bubble.png" alt="Chat">`;
         document.body.appendChild(chatBubble);
 
         // Create chat overlay (initially hidden)
@@ -95,11 +95,19 @@
             </div>`;
         document.body.appendChild(chatOverlay);
 
+        // Ensure we find the iframe after it's created
+        const iframe = chatOverlay.querySelector('iframe');
+        if (iframe) {
+            iframe.style.display = 'none'; // Hide iframe initially
+        }
+
         // Add event listeners for chat bubble and close button
         chatBubble.addEventListener('click', () => {
             chatOverlay.style.display = 'flex';
             const iframe = chatOverlay.querySelector('iframe');
-            iframe.style.display = 'block'; // Show the iframe once the chat opens
+            if (iframe) {
+                iframe.style.display = 'block'; // Show iframe once chat opens
+            }
         });
 
         const closeButton = chatOverlay.querySelector('.close-chat');
@@ -179,7 +187,6 @@
     });
 
     // Allow dynamic configuration via parameters passed to the script (optional)
-    // Example: <script src="embed.js" data-username="jack" data-room="myuniqueroomid100" data-title="Room 100"></script>
     const scriptTag = document.currentScript;
     if (scriptTag) {
         chatParams.username = scriptTag.getAttribute('data-username') || chatParams.username;

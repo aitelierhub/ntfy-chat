@@ -116,6 +116,11 @@
             .chat-bubble img {
                 width: 30px;
                 height: 30px;
+                background-image: inherit;
+                -webkit-background-clip: text;
+                color: transparent;
+                -webkit-filter: invert() sepia();
+                z-index: 900;
             }
             .chat-overlay {
                 position: fixed;
@@ -126,7 +131,7 @@
                 display: none;
                 align-items: center;
                 justify-content: center;
-                z-index: 999;
+                z-index: 1000;
                 padding: 10px;
                 box-sizing: border-box;
                 border-radius: 10px;
